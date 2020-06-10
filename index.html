@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+    let playerWins = 0;
+    let cpuWins = 0;
+
+    function computerPlay() {
+      let rand = Math.floor(Math.random() * 3);
+      let choice = '';
+      rand == 0 ? choice = 'Rock'
+        : rand == 1 ? choice = 'Paper'
+        : choice = 'Scissors';
+      return choice;
+    }
+
+    function playRound(playerSelection, computerSelection) {
+      p = playerSelection.toLowerCase();
+      c = computerSelection.toLowerCase();
+      const lose = "You lose!";
+      const win = "You win!";
+      const tie = "Tie!";
+      console.log("You chose " + p + ", computer chose " + c);
+      if(p == 'rock') {
+        if(c == 'rock') {
+          return tie;
+        } else if(c == 'paper') {
+          cpuWins++;
+          return lose;
+        } else {
+          playerWins++;
+          return win;
+        }
+      } else if(p == 'paper') {
+        if(c == 'rock') {
+          playerWins++;
+          return win;
+        } else if(c == 'paper') {
+          return tie;
+        } else {
+          cpuWins++;
+          return lose;
+        }
+      } else if(p == 'scissor'){
+        if(c == 'rock') {
+          cpuWins++;
+          return lose;
+        } else if(c == 'paper') {
+          playerWins++;
+          return win;
+        } else {
+          return tie;
+        }
+      } else {
+        return "Input was not rock, paper, nor scissors"
+      }
+    }
+
+
+
+    function game(){
+      wins = 0;
+      console.log("Welcome to an exciting game of rock, paper, scissors! You will play five rounds of R.P.S.");
+
+      for(let i = 1; i < 6; i++) {
+
+        console.log("____________________________________");
+        console.log("Round " + i);
+        let playerSelection = prompt("Please choose rock, paper, or scissors");
+        let computerSelection = computerPlay();
+        console.log(playRound(playerSelection, computerSelection));
+      }
+
+      console.log("____________________________________");
+
+      console.log("====================================");
+      console.log("Final Score: ");
+      console.log("Player: " + playerWins + " - " + "Computer: " + cpuWins);
+
+    }
+  </script>
+</body>
+</html>
